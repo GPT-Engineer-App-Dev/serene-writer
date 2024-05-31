@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme, CSSReset, useColorMode, Box, ColorModeScript } from "@chakra-ui/react";
 
 const colors = {
   brand: {
@@ -11,12 +11,28 @@ const colors = {
   },
 };
 
-const theme = extendTheme({ colors });
+const config = {
+  initialColorMode: "light",
+  useSystemColorMode: false,
+};
+
+const theme = extendTheme({ colors, config });
+
+const Main = () => {
+  const { colorMode } = useColorMode();
+  return (
+    <Box bg={colorMode === "light" ? "white" : "gray.800"} color={colorMode === "light" ? "black" : "white"} minH="100vh">
+      <App />
+    </Box>
+  );
+};
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
-      <App />
+      <CSSReset />
+      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+      <Main />
     </ChakraProvider>
   </React.StrictMode>
 );
