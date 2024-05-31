@@ -1,4 +1,4 @@
-import { Container, Text, VStack, Heading, Box, Image, Link } from "@chakra-ui/react";
+import { Container, Text, VStack, Heading, Box, Image, Link, Button } from "@chakra-ui/react";
 
 const Index = () => {
   return (
@@ -10,6 +10,7 @@ const Index = () => {
           <Image src="/images/blog-image.jpg" alt="Blog Image" borderRadius="md" />
         </Box>
         <Link href="/about" color="teal.500" fontSize="lg">Learn more about me</Link>
+        <Button as={Link} href="/add-post" colorScheme="teal">Add New Post</Button>
       </VStack>
     </Container>
   );
